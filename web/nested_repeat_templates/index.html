@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>index</title>
+    <script src="packages/polymer/boot.js"></script>
+  </head>
+
+  <body>
+    <template id="tmpl" bind>
+      <p>Hello {{name}}</p>
+      <template bind="{{address}}">
+        <p>You live in {{city}} {{zip}}</p>
+      </template>
+    </template>
+
+    <!-- Or...
+<template id="tmpl2" bind>
+      <p>Hello {{name}}</p>
+      <p>You live in {{address.city}} {{address.zip}}</p>
+         <template bind='{{address.friends}}'>
+           <template repeat>
+            <li>{{fname}}</li>
+            </template>
+         </template>
+    </template>
+
+     -->
+    <template id="tmpl2" bind>
+      <p>Hello {{name}}</p>
+      <p>You live in {{address.city}} {{address.zip}}</p>
+         <template bind='{{address.friends}}'>
+           <template repeat>
+            <li>{{fname}}</li>
+            </template>
+         </template>
+    </template>
+<!-- bind to recursive parent -->
+<template id="tmpl2a" bind>
+      <p>Hello {{name}}</p>
+      <p>You live in {{address.city}} {{address.zip}}</p>
+      <p> being recursive</p>
+      <ul>
+         <template bind='{{address.friends}}'>
+           <template repeat>
+            <li>{{fname}}...{{parentAddress.childRef}}</li>
+
+            </template>
+         </template>
+      </ul>
+    </template>
+
+      <template id='tmpl3' repeat>
+          <li>{{fname}}</li>
+      </template>
+
+    <script type="application/dart" src="index.dart"></script>
+  </body>
+</html>

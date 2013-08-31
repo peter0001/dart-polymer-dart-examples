@@ -1,7 +1,7 @@
 name: dart_polymer_examples
 description: A sample web application
 dependencies:
-  polymer: any
+  polymer: ">=0.6.20"
 #    git:
 #      url: git@github.com:dart-lang/web-ui.git
 #      ref: polymer

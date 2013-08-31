@@ -5,8 +5,8 @@
     <title>index</title>
     <script src="packages/polymer/boot.js"></script>
   </head>
- 
-  <body>   
+
+  <body>
     <template id="tmpl" bind>
       <!-- The following works with the default syntax -->
       <div>First name: {{firstName}}</div>
@@ -16,24 +16,24 @@
       <div>Signed agreement? {{signedAgreement}}</div>
       <div>Number of favorite colors: {{favoriteColors.length}}</div>
       <div>Number of addresses: {{addresses.length}}</div>
-      
+
       <!-- Conditional attributes are supported. -->
       <div signed-agreement?="{{signedAgreement}}">Check my attributes, I have a signed-agreement attr</div>
       <div has-company?="{{company}}">I will not have a has-company attr</div>
-      
+
       <!-- Input fields should work, but not yet. -->
       <!-- See https://code.google.com/p/dart/issues/detail?id=12328 -->
       <div>
       <input type="text" value="{{firstName}}" name="firstName">
       </div>
-      
+
       <!-- This works with the default syntax. -->
       <ul>
         <template repeat="{{favoriteColors}}">
-          <li>{{}}</li>
+          <li>{{}}  {{p.favoriteColors[1].name}}</li>
         </template>
       </ul>
-      
+
       <!-- This only works with fancy-syntax. -->
       <!-- Notice: You can use a name during iteration. -->
       <ul>
@@ -41,11 +41,11 @@
           <li>{{color}}</li>
         </template>
       </ul>
-      
+
       <!-- This only works with fancy-syntax -->
       <div>Dotted notation works into lists: {{favoriteColors[0].name}}</div>
       <div>Dotted notation works into maps: {{addresses['home'].city}}</div>
-      
+
       <!-- Only works with fancy-syntax -->
       <!-- Bug. See https://code.google.com/p/dart/issues/detail?id=12316 -->
 <!--
@@ -55,41 +55,41 @@
       </template>
       </ul>
 -->
-      
+
       <!--
       <!-- This only works with fancy-syntax -->
       <div>You can do math: {{ (1+2) / 3 * 100 }}</div>
       <div>You can logical not (!): {{ !signedAgreement }}</div>
-      
+
       <!-- This works with the default syntax -->
       <!-- signedAgreement is a boolean, so true and false work here -->
       <template if="{{signedAgreement}}">
         <div>Yay they signed the agreement.</div>
       </template>
-      
+
       <!-- conditionals also work with null (false) -->
       <template if="{{company}}">
         <div>Does not show up, company is null</div>
       </template>
-      
+
       <!-- This works with fancy syntax -->
       <template if="{{!company}}">
         <div>This does show up, company is null, which is treated as false</div>
       </template>
-      
+
       <!-- This works with fancy syntax -->
       <template if="{{!signedAgreement}}">
         <div>Why you no like to sign?</div>
       </template>
-      
+
       <!-- This should work, but doesn't.
            See https://github.com/dart-lang/fancy-syntax/issues/24 -->
       <!--
       <template bind="{{fullName as name}}">
-        <div>You can give names to expressions, like this: {{name}}</div> 
+        <div>You can give names to expressions, like this: {{name}}</div>
       </template>
       -->
-        
+
       <!-- This should work, but doesn't.
            See https://github.com/dart-lang/fancy-syntax/issues/25 -->
       <!-- Requires fancy-syntax -->
@@ -99,7 +99,7 @@
         for truthy expressions. {{rainbow: favoriteColors.length > 2}}
       </div>
       -->
-        
+
       <!-- However, you can use map literals for the same effect. -->
       <!-- This doesn't work, see https://github.com/dart-lang/fancy-syntax/issues/26 -->
       <!--
@@ -108,22 +108,22 @@
         for truthy expressions.
       </div>
       -->
-      
+
       <!-- Only with fancy-syntax -->
       <template if="{{age > 21}}">
         <div>Conditionals work</div>
       </template>
-      
+
       <!-- Only with fancy-syntax -->
       <template if="{{age > 21 && signedAgreement}}">
         <div>&& and || also works</div>
       </template>
-      
+
       <!-- Only with fancy-syntax -->
       <template if="{{age == 42}}">
         <div>== also works, as does !=</div>
       </template>
-      
+
       <!-- This should work, but doesn't -->
       <!-- See https://github.com/dart-lang/fancy-syntax/issues/9 -->
       <!--
@@ -131,13 +131,13 @@
         <li>{{}}</li>
       </template>
       -->
-      
+
       <!-- Only with fancy-syntax -->
       <!-- Transform a field with the | transformers -->
       <!-- This comes from a global transformer function registered with
            fancy-syntax in index.dart -->
       <div>Uppercase: {{fullName | uppercase}}</div>
-      
+
     </template>
     <script type="application/dart" src="index.dart"></script>
   </body>
